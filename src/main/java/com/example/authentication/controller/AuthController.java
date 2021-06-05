@@ -26,7 +26,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -58,11 +57,7 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        HttpHeaders responseHeaders = new HttpHeaders();
-        //responseHeaders.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:3000");
-
         return ResponseEntity.ok()
-                //.headers(responseHeaders)
                 .body(new JwtResponse(jwt,
                         userDetails.getId(),
                         userDetails.getUsername(),
